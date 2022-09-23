@@ -1,13 +1,29 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-
+import { createRouter, createWebHistory } from 'vue-router';
+import PokemonListaView from '../views/PokemonListaView.vue';
+import TipoNovoView from '../views/TipoNovoView.vue';
+import TipoListaView from '../views/TipoListaView.vue';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: PokemonListaView
+    },
+    {
+      path: '/pokemons/lista',
+      name: 'pokemons-lista',
+      component: PokemonListaView
+    },
+    {
+      path: '/tipos/novo',
+      name: 'tipos-novo',
+      component: TipoNovoView
+    },
+    {
+      path: '/tipos/lista',
+      name: 'tipo-lista',
+      component: TipoListaView
     },
     {
       path: '/about',

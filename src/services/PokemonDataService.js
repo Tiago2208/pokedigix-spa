@@ -30,7 +30,7 @@ class PokemonDataService {
         return resposta.data;
     }
 
-    async remover(nome) {
+    async removerPeloNome(nome) {
         let resposta = await http.delete('/pokemons?termo=${nome}');
     }
 
