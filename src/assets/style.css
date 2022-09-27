@@ -17,10 +17,7 @@
     font-weight: bolder;
 }
 
-.li-do-tipo-nome {
+.li-do-tipo-nome, .form-label {
   color: white;
 }
 
-.form-label {
-  color: white;
-}
