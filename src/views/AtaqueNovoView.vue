@@ -108,7 +108,7 @@ export default {
                     <input type="number" class="form-control" v-model="ataqueRequest.pontosDePoder" id="pp" required>
                 </div>
                 <div class="col-12">
-                    <label for="categoria" class="form-label">Tipo do ataque: </label>
+                    <label for="tipo" class="form-label">Tipo do ataque: </label>
                     <select id="tipo" class="form-select" v-model="ataqueRequest.tipoId">
                         <option v-for="tipo in tipos" :key="tipo.id" :value="tipo.id">
                             {{tipo.nome}}
