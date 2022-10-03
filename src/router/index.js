@@ -5,6 +5,7 @@ import TipoListaView from '../views/TipoListaView.vue';
 import AtaqueNovoView from '../views/AtaqueNovoView.vue';
 import AtaqueListaView from '../views/AtaqueListaView.vue';
 import AtaqueEditView from '../views/AtaqueEditView.vue';
+import TipoEditView from '../views/TipoEditView.vue';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -22,6 +23,11 @@ const router = createRouter({
       path: '/tipos/novo',
       name: 'tipos-novo',
       component: TipoNovoView
+    },
+    {
+      path: '/tipos/edit/:id',
+      name: 'tipos-edit',
+      component: TipoEditView
     },
     {
       path: '/tipos/lista',
