@@ -18,10 +18,10 @@ import { RouterLink } from 'vue-router';
                             <RouterLink to="/" class="nav-link active" aria-current="page">Home</RouterLink>
                         </li>
                         <li class="nav-item">
-                            <RouterLink to="/pokemons-selvagens" class="nav-link">Pokemons Selvagens</RouterLink>
+                            <RouterLink to="/pokemons-selvagens" class="nav-link active">Pokemons Selvagens</RouterLink>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 Ataques
                             </a>
@@ -36,7 +36,7 @@ import { RouterLink } from 'vue-router';
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 Tipos
                             </a>
@@ -51,7 +51,7 @@ import { RouterLink } from 'vue-router';
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 Pokémons
                             </a>
@@ -64,6 +64,21 @@ import { RouterLink } from 'vue-router';
                                 </li>
                             </ul>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Treinadores
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <RouterLink class="dropdown-item" to="/treinadores/novo">Novo</RouterLink>
+                                </li>
+                                <li>
+                                    <RouterLink class="dropdown-item" to="/treinadores/lista">Lista</RouterLink>
+                                </li>
+                            </ul>
+                        </li>
+
                     </ul>
                 </div>
             </div>

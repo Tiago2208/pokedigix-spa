@@ -7,6 +7,8 @@ import AtaqueListaView from '../views/AtaqueListaView.vue';
 import AtaqueEditView from '../views/AtaqueEditView.vue';
 import TipoEditView from '../views/TipoEditView.vue';
 import PokemonNovoView from '../views/PokemonNovoView.vue';
+import TreinadorNovoView from '../views/TreinadorNovoView.vue';
+import TreinadorListaView from '../views/TreinadorListaView.vue';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -54,6 +56,16 @@ const router = createRouter({
       path: '/pokemons/novo',
       name: 'pokemons-novo',
       component: PokemonNovoView
+    },
+    {
+      path: '/treinadores/novo',
+      name: 'treinadores-novo',
+      component: TreinadorNovoView
+    },
+    {
+      path: '/treinadores/lista',
+      name: 'treinadores-lista',
+      component: TreinadorListaView
     },
   ]
 })
