@@ -1,6 +1,11 @@
 import http from '../http-commons';
 
 class EnderecoDataService {
+    async buscarTodos() {
+        let resposta = await http.get('/enderecos');
+        return resposta.data
+    }
+
     async buscarPeloId(id){
         let resposta = await http.get('/enderecos/' + id);
         return resposta.data;

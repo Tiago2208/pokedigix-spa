@@ -34,7 +34,7 @@ const router = createRouter({
     },
     {
       path: '/tipos/lista',
-      name: 'tipo-lista',
+      name: 'tipos-lista',
       component: TipoListaView
     },
     {

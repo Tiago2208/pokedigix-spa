@@ -1,21 +1,23 @@
 export default class TreinadorRequest {
     constructor() {
+        this.idEndereco = null;
         this.nome = null;
-        this.endereco = null;
+        this.idPrimeiroPokemon = null;
         
     }
 
     populate(obj) {
+        this.idEndereco = obj.idEndereco;
         this.nome = obj.nome;
-        this.endereco = obj.endereco;
+        this.idPrimeiroPokemon = obj.idPrimeiroPokemon;
        
     }
 
     toJson() {
         return {
+            idEndereco: this.idEndereco,
             nome: this.nome,
-            endereco: this.endereco,
-            
+            idPrimeiroPokemon: this.idPrimeiroPokemon
         }
     }
 }

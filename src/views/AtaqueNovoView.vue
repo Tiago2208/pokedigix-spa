@@ -3,6 +3,7 @@ import AtaqueDataService from '../services/AtaqueDataService';
 import AtaqueRequest from '../models/AtaqueRequest';
 import AtaqueResponse from '../models/AtaqueResponse';
 import TipoDataService from '../services/TipoDataService';
+import MensagemSucessoVue from '../components/MensagemSucesso.vue';
 export default {
     name: 'ataques-novo',
     data() {
@@ -30,6 +31,9 @@ export default {
             tipos: [],
             desabilitarForca: false
         }
+    },
+    components: {
+        MensagemSucessoVue
     },
     methods: {
         salvar() {
@@ -126,15 +130,9 @@ export default {
             </form>
         </div>
         <div v-else>
-            <div class="row">
-                <h4>Salvo com sucesso!</h4>
-                <span>Ataque cadastrado: {{ataqueRequest.nome}}
-                    Id do novo ataque: {{ataqueResponse.id}}
-                </span>
-            </div>
-            <div class="row-sm">
-                <button @click="novo" class="btn btn-primary">Novo</button>
-            </div>
+            <MensagemSucessoVue @cadastro="novo" urlListagem="ataques-lista">
+                <span>O ataque {{ataqueRequest.nome}} foi cadastrado com sucesso!</span>
+            </MensagemSucessoVue>
         </div>
     </div>
 </template>

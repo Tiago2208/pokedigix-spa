@@ -6,6 +6,7 @@ import { RouterLink } from 'vue-router';
     <header>
         <nav class="sticky-top navbar navbar-dark navbar-expand-lg bg-dark">
             <div class="container-md">
+                <img width="70" height="70" src="../assets/pokebola-logo.png" />
                 <a class="navbar-brand" href="#">Pokédigix</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

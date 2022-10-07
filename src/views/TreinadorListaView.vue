@@ -9,15 +9,6 @@ export default {
         }
     },
     methods: {
-        // buscarEnderecos(){
-        //     EnderecoDataService.buscarPelaCidade()
-        //         .then(resposta => {
-        //             this.enderecos = resposta
-        //         })
-        //         .catch(erro =>{
-        //             console.log(erro);
-        //         })
-        // },
         buscarTreinadores() {
             TreinadorDataService.buscarTodos()
                 .then(resposta => {
@@ -45,7 +36,7 @@ export default {
                     <div class="card-body">
                         <ul class="list-group list-group">
                             <li class="list-group-item  text-bg">Nome Treinador: {{treinador.nome}}</li>
-                            <li class="list-group-item  text-bg">Nivel: {{treinador.id}}</li>
+                            <li class="list-group-item  text-bg">Nivel: {{treinador.nivel}}</li>
                             <li class="list-group-item  text-bg">Cidade:
                                 {{treinador.endereco.cidade}}</li>
                             <li class="list-group-item  text-bg">Regiao:
