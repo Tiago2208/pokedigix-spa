@@ -1,6 +1,9 @@
 <script>
 import AtaqueDataService from '../services/AtaqueDataService';
 import Loading from "vue-loading-overlay";
+import BarraBusca from '../components/BarraBusca.vue';
+import Ordenacao from '../components/Ordenacao.vue';
+import Paginacao from '../components/Paginacao.vue';
 export default {
     name: "ataques-lista",
     data() {
@@ -13,6 +16,9 @@ export default {
     },
     components: {
         Loading,
+        BarraBusca,
+        Ordenacao,
+        Paginacao,
     },
     methods: {
         buscarAtaques() {
@@ -66,6 +72,12 @@ export default {
         <div>
             <h2 class="mb-4 mt-4 estilo-titulo-lista-ataques">Lista de Ataques</h2>
             <div class="table-responsive">
+                <div class="col-9">
+                    <BarraBusca></BarraBusca>
+                </div>
+                <div class="col-3">
+                    <Ordenacao></Ordenacao>
+                </div>
                 <loading v-model:active="isLoading" :is-full-page="fullPage" :loader="'dots'" />
                 <table class="table">
                     <thead class="table-dark">
@@ -91,7 +103,8 @@ export default {
                             <td class="text-center">{{ataque.acuracia}}</td>
                             <td class="text-center">{{ataque.pontosDePoder}}</td>
                             <td>
-                                <button type="button" class="btn btn-dark btn-outline-white" @click="editarAtaque(ataque.id)">
+                                <button type="button" class="btn btn-dark btn-outline-white"
+                                    @click="editarAtaque(ataque.id)">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-pencil-square" viewBox="0 0 16 16">
                                         <path
@@ -114,6 +127,9 @@ export default {
                         </tr>
                     </tbody>
                 </table>
+                <div class="col-4">
+                    <Paginacao></Paginacao>
+                </div>
             </div>
         </div>
         <div class="modal fade" id="confirmarExclusao" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -140,7 +156,8 @@ export default {
 </template>
 
 <style>
-.estilo-tabela-ataque, .estilo-titulo-lista-ataques {
+.estilo-tabela-ataque,
+.estilo-titulo-lista-ataques {
     color: white;
 }
 </style>

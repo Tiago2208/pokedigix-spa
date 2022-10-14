@@ -1,8 +1,13 @@
-import http from "../http-commons";
+import http from '../http-commons';
 
 class PokemonDataService {
-   async buscarTodos() {
+    async buscarTodos() {
         let resposta = await http.get('/pokemons');
+        return resposta.data;
+    }
+
+    async buscarTodosPaginadoOrdenado(pagina, tamanho, campoOrdenacao, direcao, nome) {
+        let resposta = await http.get(`/pokemons?pagina=${pagina}&tamanho=${tamanho}&campoOrdenacao=${campoOrdenacao}&termo=${nome}&direcao=${direcao}`);
         return resposta.data;
     }
 
@@ -20,18 +25,18 @@ class PokemonDataService {
         let resposta = await http.put('/pokemons/' + id, pokemon);
         return resposta.data;
     }
-    
+
     async remover(id) {
-        let resposta = await http.delete('/pokemons/' + id);
+        await http.delete('/pokemons/' + id);
+    }
+
+    async removerPeloNome(nome) {
+        await http.delete('/pokemons?termo=' + nome);
     }
 
     async buscarPeloNome(nome) {
         let resposta = await http.get('/pokemons?termo=' + nome);
         return resposta.data;
-    }
-
-    async removerPeloNome(nome) {
-        let resposta = await http.delete('/pokemons?termo=' + nome);
     }
 
     async buscarPeloIdDoTipo(id) {

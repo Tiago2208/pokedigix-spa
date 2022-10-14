@@ -1,6 +1,9 @@
 <script >
 import TipoDataService from '../services/TipoDataService';
 import Loading from "vue-loading-overlay";
+import BarraBusca from '../components/BarraBusca.vue';
+import Ordenacao from '../components/Ordenacao.vue';
+import Paginacao from '../components/Paginacao.vue';
 export default {
   name: "tipos-lista",
   data() {
@@ -12,6 +15,9 @@ export default {
   },
   components: {
     Loading,
+    BarraBusca,
+    Ordenacao,
+    Paginacao,
   },
   methods: {
     buscarTipos() {
@@ -65,6 +71,12 @@ export default {
   <div class="row">
     <h2 class="mb-4 mt-4">Lista de Tipos</h2>
     <div class="table-responsive">
+      <div class="col-9">
+        <BarraBusca></BarraBusca>
+      </div>
+      <div class="col-3">
+        <Ordenacao></Ordenacao>
+      </div>
       <loading v-model:active="isLoading" />
       <table class="table table-dark cor-da-tabela-do-tipo">
         <thead>
@@ -92,8 +104,8 @@ export default {
               </button>
             </td>
             <td>
-              <button type="button" class="btn btn-dark btn-outline-danger" data-bs-toggle="modal" data-bs-target="#confirmacaoExclusao"
-                @click="selecionar(tipo)">
+              <button type="button" class="btn btn-dark btn-outline-danger" data-bs-toggle="modal"
+                data-bs-target="#confirmacaoExclusao" @click="selecionar(tipo)">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3"
                   viewBox="0 0 16 16">
                   <path
@@ -107,6 +119,9 @@ export default {
           </tr>
         </tbody>
       </table>
+      <div class="col-4">
+					<Paginacao></Paginacao>
+				</div>
     </div>
     <div class="modal fade" id="confirmacaoExclusao" tabindex="-1" aria-labelledby="exampleModalLabel"
       aria-hidden="true">
