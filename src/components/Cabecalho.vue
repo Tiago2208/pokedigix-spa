@@ -4,7 +4,7 @@ import { useCookies } from 'vue3-cookies';
 const { cookies } = useCookies();
 export default {
     data() {
-        return{
+        return {
             nomeTreinador: "",
         }
     },
@@ -91,19 +91,24 @@ export default {
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                {{nomeTreinador}}
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <RouterLink class="dropdown-item" to="/treinadores/lista">Trocar o treinador</RouterLink>
-                                </li>
-                            </ul>
-                        </li>
 
                     </ul>
+                    <div class="d-flex">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle active" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{nomeTreinador}}
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <RouterLink class="dropdown-item" to="/treinadores/lista">Trocar o treinador
+                                        </RouterLink>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
