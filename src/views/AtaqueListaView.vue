@@ -12,6 +12,29 @@ export default {
             ataqueSelecionado: this.inicializarAtaques(),
             isLoading: false,
             fullPage: false,
+            pagina: 1,
+            tamanho: 4,
+            ordenacao: {
+                titulo: "",
+                direcao: "",
+                campo: ""
+            },
+            url: '#',
+            pageParam: 'page',
+            totalPaginas: 10,
+            quantidade: 3,
+            opcoes: [{
+                titulo: "Nome: Crescente",
+                direcao: "ASC",
+                campo: "nome"
+            },
+            {
+                titulo: "Nome: Decrescente",
+                direcao: "DESC",
+                campo: "nome"
+            },
+            ],
+            termo: ""
         };
     },
     components: {
@@ -23,9 +46,10 @@ export default {
     methods: {
         buscarAtaques() {
             this.isLoading = true;
-            AtaqueDataService.buscarTodos()
+            AtaqueDataService.buscarTodosPaginadoOrdenado(this.pagina - 1, this.tamanho, this.ordenacao.campo, this.ordenacao.direcao, this.termo)
                 .then(resposta => {
-                    this.ataques = resposta;
+                    this.ataques = resposta.ataques;
+                    this.totalPaginas = resposta.totalPaginas;
                     this.isLoading = false;
                 })
                 .catch(erro => {
@@ -38,6 +62,10 @@ export default {
                 id: null,
                 nome: null
             }
+        },
+        trocarPagina(p) {
+            this.pagina = p;
+            this.buscarAtaques()
         },
         editarAtaque(id) {
             console.log(id);
@@ -127,9 +155,8 @@ export default {
                         </tr>
                     </tbody>
                 </table>
-                <div class="col-4">
-                    <Paginacao></Paginacao>
-                </div>
+                <Paginacao :totalPaginas="totalPaginas" :quantidade="quantidade" v-model="pagina" :atual="pagina"
+                    :trocarPagina="trocarPagina"></Paginacao>
             </div>
         </div>
         <div class="modal fade" id="confirmarExclusao" tabindex="-1" aria-labelledby="exampleModalLabel"

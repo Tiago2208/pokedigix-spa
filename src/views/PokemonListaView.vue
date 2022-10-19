@@ -1,18 +1,24 @@
 <script>
 import PokemonDataService from "../services/PokemonDataService";
 import Ordenacao from '../components/Ordenacao.vue';
+import Paginacao from '../components/Paginacao.vue';
 export default {
   name: "lista-pokemons",
   data() {
     return {
+      shiny: false,
       pokemons: [],
-      pagina: 0,
+      pagina: 1,
       tamanho: 4,
       ordenacao: {
         titulo: "",
         direcao: "",
         campo: ""
       },
+      url: '#',
+      pageParam: 'page',
+      totalPaginas: 10,
+      quantidade: 3,
       opcoes: [{
         titulo: "Nome: Crescente",
         direcao: "ASC",
@@ -37,7 +43,8 @@ export default {
     };
   },
   components: {
-    Ordenacao
+    Ordenacao,
+    Paginacao
   },
   methods: {
     filtarPeloDigitada() {
@@ -45,14 +52,29 @@ export default {
         this.buscarPokemons();
       }
     },
+    trocarPagina(p) {
+      this.pagina = p;
+      this.buscarPokemons()
+    },
     buscarPokemons() {
-      PokemonDataService.buscarTodosPaginadoOrdenado(this.pagina, this.tamanho, this.ordenacao.campo, this.ordenacao.direcao, this.termo)
+      PokemonDataService.buscarTodosPaginadoOrdenado(this.pagina - 1, this.tamanho, this.ordenacao.campo, this.ordenacao.direcao, this.termo)
         .then((resposta) => {
-          this.pokemons = resposta;
+          this.pokemons = resposta.pokemons;
+          this.totalPaginas = resposta.totalPaginas;
         })
         .catch((erro) => {
           console.log(erro);
         });
+    },
+    novo() {
+      this.$router.push({name: 'pokemons-novo'});
+    },
+    verificarShiny() {
+      if (this.shiny) {
+        this.shiny = false;
+      } else {
+        this.shiny = true;
+      }
     },
   },
   mounted() {
@@ -66,6 +88,7 @@ export default {
   <main>
     <div>
       <h2>Lista de Pokemon</h2>
+      <button @click="verificarShiny" class="btn btn-primary m-1"> Shiny </button>
       <div class="row justify-content-end">
         <div class="col-2">
           <Ordenacao v-model="ordenacao" @ordenar="buscarPokemons" :ordenacao="ordenacao" :opcoes="opcoes" />
@@ -94,11 +117,14 @@ export default {
             </div>
             <div class="row g-0">
               <div class="col-md-3 text-center align-items-center">
-                <img :alt="'Imagem do ' + pokemon.nome" :title="pokemon.nome" class="card-img" :src="
-                  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/' +
-                  pokemon.numeroPokedex +
-                  '.png'
-                " />
+                <div v-if="shiny">
+                  <img style="width: 250px;" class="img-fluid rounded-start "
+                    :src="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/' + pokemon.numeroPokedex + '.png'" />
+                </div>
+                <div v-else>
+                  <img style="width: 250px;" class="img-fluid rounded-start "
+                    :src="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/' + pokemon.numeroPokedex + '.png'" />
+                </div>
               </div>
               <div class="col-md-9">
                 <div class="card-body">
@@ -129,12 +155,11 @@ export default {
                   <div class="collapse" :id="'collapseExample' + pokemon.id">
                     <div class="card card-body">
                       <p class="card-text">Pokedex: {{ pokemon.numeroPokedex }}</p>
-                      <p class="card-text">Pokedex: {{ pokemon.peso }}</p>
-                      <p class="card-text">Pokedex: {{ pokemon.altura }}</p>
-                      <p class="card-text">Pokedex: {{ pokemon.felicidade }}</p>
+                      <p class="card-text">Peso: {{ pokemon.peso }}</p>
+                      <p class="card-text">Altura: {{ pokemon.altura }}</p>
+                      <p class="card-text">Felicidade: {{ pokemon.felicidade }}</p>
                     </div>
                   </div>
-
                   <div class="text-center">
                     <button type="button" data-bs-toggle="collapse" class="btn btn-outline-primary pt-1 m-1"
                       :href="'#collapseExample' + pokemon.id">
@@ -168,6 +193,8 @@ export default {
             </div>
           </div>
         </div>
+        <Paginacao :totalPaginas="totalPaginas" :quantidade="quantidade" v-model="pagina" :atual="pagina"
+          :trocarPagina="trocarPagina"></Paginacao>
       </div>
       <div class="row">
         <div class="col-1">
